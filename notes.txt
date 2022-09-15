@@ -1,0 +1,184 @@
+HTML
+we want a div.movie-container {
+  label 
+  select will have an id #movie
+    option value(price of the movie)
+  [SEARCH Select Option]
+}
+
+we want a ul .showcase , it will show the colour for seats that are not selected N/A , selected and occupied
+
+CHECK HOW TO DO THAT !! -> we need a class seat, for the seats 
+CHECK <small> tags
+selected will have a class selected,
+occupied will have a class occupied
+
+we want to wrap rows and seats and the screen so we need a container div
+  we want a .screen for the screen so we can style it 
+  we want a .row with 
+    8 .seats
+  we need 6 ROWS
+  we want some of the seats to be occupied
+
+  we need a .text paragraph You have selected #count seats for a price of $ #total-price
+  Where should we put <span> ?
+
+_______________________________________________________
+CSS
+
+font -> lato, sans-serif
+we don't want padding to to add up extra space
+
+body -> background color #242333; align everything to center don't forget height
+
+style .movie-container select {CHECK}
+________________________________________
+[-moz-apperance: none;
+ -webkit-apperance: none;
+ apperance: none;]
+SEARCH WHAT IS THAT
+________________________________________
+
+
+.seat -> background color #444451;
+style the seat -> WORK HERE
+
+try to separate seats,,, nth-of-type , nth-last-of-type
+
+any seat class that has a class of selected -> background-color #6feaf6;
+
+any seat class that has a class of occupied -> 
+background-color #fff;
+
+seats that are not occupied : hover -> we want to scale it to 1.2,,, check how,,
+cursor pointer
+↑↑↑
+we do not want it to happen to the showcase .seat class ↑↑↑
+
+WORK ON .row
+
+.showcase we want a background black transparent 0.1 
+we want the color of the text #777 [CHECK NEEDED]
+
+check showcase li [STYLE]
+
+.screen {
+  style the screen
+
+  check transform: rotateX !!
+  we want a box shadow with blur effect
+
+  min:14
+}
+
+PUT THE ↓↓ container over the .seat class
+.container {
+  perspective: 1000px;
+  IT HAS TO DO WITH 3D EFFECTS,., SEARCH
+}
+
+the number and price text colour should be #6feaf6;
+_______________________________________________________
+
+JavaScript
+
+► Selecting Movie & Seats From UI, 
+
+select container,
+we want to select all row seats that are available [not occupied] ,, check how ;)
+we want count and total.
+we want the select list 
+
+we want the ticketPrice => ?? the value of the select list [smth like that,, check when you create html]
+we want te ticketPrice to be a number not a string
+
+MAKE A TEST
+
+
+when we click on a seat we want to change the class to selected, (to turn blue)
+→ we can do that with forEach or 
+  we can add a click event to the container,,, so we can click everywhere,, but where we click, if it has(contains) a class of seat and does not have a class of occupies {
+    add the selected class !!
+    toggle() => check toggle
+    we can use add and remove, but we want toggle because when we click again we want to remove it ,
+    SEARCH!
+
+    also when we select seats we want to call the function which updates the seats and the price
+  }
+
+---------------------------------------------
+Update the TOTAL and the Price
+
+updateSelectedCount()
+CREATE THE FUNCTION ABOVE THE EVENT LISTENERS
+
+→ the function will get the selected seats
+
+Make a test what it returns...
+
+→ the function will get the length of the nodelist
+
+→ the function will update the count text
+
+→ the function will update the total text
+
+REMEMBER: When we say get: -> store that value in a variable
+---------------------------------------------
+
+When we select another movie we want to update the price
+
+→ we will ad a change event listener to the movieSelect
+  and we will set te ticket price to the value of the selected ticket (we want it number)
+  ► we will call the function that updates the text and total
+_______________________________________________________
+
+►Save Data To Local Storage
+
+we need to write that code inside the function that updates the text and total
+
+we need to get seatsIndex
+
+[→we need to copy selected seats into arr
+→map through array
+  →return a new array indexes
+    we will use spread operator to get all the seats
+    and indexOf(seat)]
+
+we will use spread operator. [SEARCH] developer.mozilla.org
+
+we have an array
+
+save that to local storage,
+remember JSON stringify
+--------------------------------------------
+
+when we reload the page we want the selected seats to stay selected, also we want the selected film to stay selected
+
+we need to get the index of the selected movie
+we will set them to a function setMovieData()↓↓↓↓
+  e.target.selectedIndex
+  also we want the price
+↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑
+
+the function will take the movieIndex and the moviePrice as parameters
+  the function will save them to localStorage , so:
+  localStorage.setItem(key,value)
+  localStorage.setItem(key,value)
+
+_______________________________________________________
+
+► POPULATE UI WITH SAVED DATA 
+
+right under the selected things, we will call a function 
+populateUI();
+
+//Get data from localStorage and populate UI
+we will create a function populateUI
+  we will get selected seats from local storage
+    we set it to JSON stringify before,, what do we need now?
+
+we have to check if there are any seats in the local storage and then  / loop through , and for the seats that are in the local storage we want to add the selected class, so thay can be updated at the UI
+
+we need to make sure if there are selected seats and also if that's not an empty array
+
+check by yourself [2:50]
