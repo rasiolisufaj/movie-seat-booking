@@ -45,11 +45,6 @@ style the seat -> WORK HERE
 
 try to separate seats,,, nth-of-type , nth-last-of-type
 
-any seat class that has a class of selected -> background-color #6feaf6;
-
-any seat class that has a class of occupied -> 
-background-color #fff;
-
 seats that are not occupied : hover -> we want to scale it to 1.2,,, check how,,
 cursor pointer
 ↑↑↑
