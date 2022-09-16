@@ -137,7 +137,8 @@ we need to get seatsIndex
 →map through array
   →return a new array indexes
     we will use spread operator to get all the seats
-    and indexOf(seat)]
+    and indexOf(seat)
+]
 
 we will use spread operator. [SEARCH] developer.mozilla.org
 
