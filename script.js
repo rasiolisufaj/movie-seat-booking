@@ -1,31 +1,12 @@
 const containerElement = document.querySelector(".container");
-const availableSeats = document.querySelectorAll(".row .seat:not(.occupied)");
+const availableSeats = document.querySelectorAll(".row .seat");
 const selectElement = document.getElementById("movie");
 let countElement = document.getElementById("count");
 let totalPriceElement = document.getElementById("total-price");
-let ticketPrice = +selectElement.value;
 
 populateUI();
 
-/* Seat state initialization
-
-const seats = [];
-for(let i = 0; i< SEAT_NUMER; i++){
-  let seat =  {
-    seatId: i,
-    isOcuppied: false,
-    isSelected: false,
-    price: 100
-  }
-  seats.push(seat);
-
-  //Create seats UI by Js
-  const created Element = document.create(div);
-  createElement.id = i;
-}
-
-
-*/
+let ticketPrice = +selectElement.value;
 
 // Set Movie Data
 setMovieData = (movieIndex, moviePrice) => {
@@ -37,9 +18,8 @@ setMovieData = (movieIndex, moviePrice) => {
 function updateSeatAndPrice() {
   const selectedSeats = document.querySelectorAll(".row .seat.selected");
   let count = selectedSeats.length;
-  let price = count * ticketPrice;
   countElement.innerText = count;
-  totalPriceElement.innerText = price;
+  totalPriceElement.innerText = count * ticketPrice;
 
   // Save Data To Local Storage
   const seatsIndex = [...selectedSeats].map((seat) =>
@@ -65,6 +45,13 @@ function populateUI() {
   }
 }
 
+// Price Updating
+selectElement.addEventListener("change", (e) => {
+  ticketPrice = +e.target.value;
+  setMovieData(e.target.selectedIndex, e.target.value);
+  updateSeatAndPrice();
+});
+
 // Seat Selecting
 containerElement.addEventListener("click", (e) => {
   if (
@@ -72,13 +59,10 @@ containerElement.addEventListener("click", (e) => {
     !e.target.classList.contains("occupied")
   ) {
     e.target.classList.toggle("selected");
+
     updateSeatAndPrice();
   }
 });
 
-// Price Updating
-selectElement.addEventListener("change", (e) => {
-  setMovieData(e.target.selectedIndex, e.target.value);
-  ticketPrice = +e.target.value;
-  updateSeatAndPrice();
-});
+// Update Selected Count
+updateSeatAndPrice();
