@@ -100,6 +100,21 @@ small {
   transform: rotateX(-45deg);
 }
 
+.btn {
+  border: 0;
+  border-radius: 5px;
+  padding: 8px 12px;
+  font-size: 14px;
+  font-weight: bold;
+  color: #333;
+  margin-top: 10px;
+  cursor: pointer;
+}
+
+.btn:hover {
+  opacity: 0.8;
+}
+
 span {
   color: #6feaf6;
 }

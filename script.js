@@ -82,6 +82,3 @@ selectElement.addEventListener("change", (e) => {
   ticketPrice = +e.target.value;
   updateSeatAndPrice();
 });
-
-// Count and TotalPrice Set
-updateSeatAndPrice();
