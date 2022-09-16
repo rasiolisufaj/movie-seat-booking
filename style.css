@@ -12,7 +12,9 @@ body {
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  min-height: 100vh;
+  height: 100vh;
+  overflow: hidden;
+  margin: 0;
 }
 
 .movie-container {
@@ -20,11 +22,17 @@ body {
 }
 
 .movie-container select {
+  background-color: #fff;
   font-size: 14px;
-  padding: 8px 12px;
+  padding: 6px 10px;
   border: 0;
   border-radius: 5px;
   margin-left: 8px;
+}
+
+.container {
+  perspective: 1000px;
+  margin-bottom: 20px;
 }
 
 .seat {
@@ -74,8 +82,26 @@ small {
   transform: scale(1.2);
 }
 
+.showcase .seat:not(.occupied):hover {
+  cursor: default;
+  transform: scale(1);
+}
+
 .seat:nth-last-of-type(2) {
   margin-left: 15px;
+}
+
+.screen {
+  background-color: #fff;
+  width: 100%;
+  height: 100px;
+  box-shadow: 0 3px 10px rgba(255, 255, 255, 0.7);
+  margin: 20px 0;
+  transform: rotateX(-45deg);
+}
+
+span {
+  color: #6feaf6;
 }
 
 .row {
