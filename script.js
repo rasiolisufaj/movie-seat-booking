@@ -4,6 +4,7 @@ const selectElement = document.getElementById("movie");
 const reserveButton = document.getElementById("reserve-btn");
 let countElement = document.getElementById("count");
 let totalPriceElement = document.getElementById("total-price");
+let newOccupiedSeats = [];
 
 populateUI();
 
@@ -31,6 +32,7 @@ function updateSeatAndPrice() {
 
 // Populate UI
 function populateUI() {
+  //populate selected
   const selectedSeats = JSON.parse(localStorage.getItem("selectedSeats"));
   if (selectedSeats !== null && selectedSeats.length > 0) {
     availableSeats.forEach((seat, index) => {
@@ -44,6 +46,15 @@ function populateUI() {
   if (selectedMovieIndex !== null) {
     selectElement.selectedIndex = selectedMovieIndex;
   }
+  //populate occupied
+  newOccupiedSeats = JSON.parse(localStorage.getItem("newOccupiedSeats"));
+  if (newOccupiedSeats !== null && newOccupiedSeats.length > 0) {
+    availableSeats.forEach((seat, index) => {
+      if (newOccupiedSeats.indexOf(index) > -1) {
+        seat.classList.add("occupied");
+      }
+    });
+  }
 }
 
 // Update Occupied Seats
@@ -53,9 +64,18 @@ function reserveSeats() {
     availableSeats.forEach((item, index) => {
       if (selectedSeats.indexOf(index) > -1) {
         item.classList.add("occupied");
+        item.classList.remove("selected");
+        newOccupiedSeats.push(index);
+        localStorage.setItem(
+          "newOccupiedSeats",
+          JSON.stringify(newOccupiedSeats)
+        );
       }
     });
+    localStorage.selectedSeats = JSON.stringify([]);
   }
+  countElement.innerText = 0;
+  totalPriceElement.innerText = 0;
 }
 
 // Price Updating
