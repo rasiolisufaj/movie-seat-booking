@@ -1,6 +1,7 @@
 const containerElement = document.querySelector(".container");
 const availableSeats = document.querySelectorAll(".row .seat");
 const selectElement = document.getElementById("movie");
+const reserveButton = document.getElementById("reserve-btn");
 let countElement = document.getElementById("count");
 let totalPriceElement = document.getElementById("total-price");
 
@@ -45,6 +46,18 @@ function populateUI() {
   }
 }
 
+// Update Occupied Seats
+function reserveSeats() {
+  const selectedSeats = JSON.parse(localStorage.getItem("selectedSeats"));
+  if (selectedSeats !== null && selectedSeats.length > 0) {
+    availableSeats.forEach((item, index) => {
+      if (selectedSeats.indexOf(index) > -1) {
+        item.classList.add("occupied");
+      }
+    });
+  }
+}
+
 // Price Updating
 selectElement.addEventListener("change", (e) => {
   ticketPrice = +e.target.value;
@@ -62,6 +75,11 @@ containerElement.addEventListener("click", (e) => {
 
     updateSeatAndPrice();
   }
+});
+
+// Reserve Button
+reserveButton.addEventListener("click", (e) => {
+  reserveSeats();
 });
 
 // Update Selected Count

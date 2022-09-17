@@ -178,3 +178,19 @@ we have to check if there are any seats in the local storage and then  / loop th
 we need to make sure if there are selected seats and also if that's not an empty array
 
 check by yourself [2:50]
+
+Reserve Button
+when we click, 
+it will make the selected seats occupied
+  localstorage -> selectedSeats, foreach seat, add occupied class
+  also add occupied indexes to newOcuppiedSeats vector in the localStorage
+update localstorage
+  clear selectedSeats 
+
+it will reset te p text to 0 seats and $0 
+
+
+Populate UI .populate occupied
+  forEach seat if indes is on the newOcuppiedSeats array add .occupied
+
+  clear newOcuppiedSeats
